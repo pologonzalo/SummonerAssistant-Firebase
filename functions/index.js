@@ -25,13 +25,12 @@ exports.getSummonerInfo = functions.https.onRequest((req, res) => {
 
   const summoner = req.query.summoner
   const getSummonerInfoUrl = `${BASE_EUW}/lol/summoner/v3/summoners/by-name/${summoner}?api_key=${API_RIOT_KEY}`
-  axios.get(getSummonerInfoUrl)
+  return axios.get(getSummonerInfoUrl)
     .then(({ data }) => {
       const getChampionMasteryUrl = `${BASE_EUW}/lol/champion-mastery/v3/champion-masteries/by-summoner/${data.id}?api_key=${API_RIOT_KEY}`
       return axios.get(getChampionMasteryUrl)
     })
     .then(({ data }) => {
-      console.log('>>>>>', data)
       return res.send(data)
     })
     .catch(error => {
