@@ -8,10 +8,6 @@ const axios = require('axios')
 const API_RIOT_KEY = 'RGAPI-639291ee-9f27-42bc-8ce6-249a0e3b956d'
 const BASE_EUW = 'https://euw1.api.riotgames.com'
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  response.send("Hello from Firebase!");
-});
-
 exports.getSummonerInfo = functions.https.onRequest((req, res) => {
   // ---- Example answer for blaxtem ------
   // const exampleAnswer= {
@@ -28,13 +24,19 @@ exports.getSummonerInfo = functions.https.onRequest((req, res) => {
   if (!req.query.region) return res.status(400).send('Missing region')
 
   const summoner = req.query.summoner
-  const url = `${BASE_EUW}/lol/summoner/v3/summoners/by-name/${summoner}?api_key=${API_RIOT_KEY}`
-  axios.get(url)
+  const getSummonerInfoUrl = `${BASE_EUW}/lol/summoner/v3/summoners/by-name/${summoner}?api_key=${API_RIOT_KEY}`
+  axios.get(getSummonerInfoUrl)
     .then(({ data }) => {
-      res.setHeader('Content-Type', 'application/json');
+      const getChampionMasteryUrl = `${BASE_EUW}/lol/champion-mastery/v3/champion-masteries/by-summoner/${data.id}?api_key=${API_RIOT_KEY}`
+      return axios.get(getChampionMasteryUrl)
+    })
+    .then(({ data }) => {
+      console.log('>>>>>', data)
       return res.send(data)
     })
     .catch(error => {
       return res.send(error)
     });
 })
+
+
