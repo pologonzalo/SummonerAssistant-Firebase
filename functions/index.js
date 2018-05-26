@@ -8,7 +8,7 @@ const axios = require('axios')
 const API_RIOT_KEY = 'RGAPI-639291ee-9f27-42bc-8ce6-249a0e3b956d'
 const BASE_EUW = 'https://euw1.api.riotgames.com'
 
-exports.getSummonerInfo = functions.https.onRequest((req, res) => {
+exports.getSummonerSummaryRanked = functions.https.onRequest((req, res) => {
   // ---- Example answer for blaxtem ------
   // const exampleAnswer= {
   //   "id": 63749117,
@@ -23,19 +23,30 @@ exports.getSummonerInfo = functions.https.onRequest((req, res) => {
   if (!req.query.summoner) return res.status(400).send('Missing summoner name')
   if (!req.query.region) return res.status(400).send('Missing region')
 
-  const summoner = req.query.summoner
-  const getSummonerInfoUrl = `${BASE_EUW}/lol/summoner/v3/summoners/by-name/${summoner}?api_key=${API_RIOT_KEY}`
-  return axios.get(getSummonerInfoUrl)
-    .then(({ data }) => {
-      const getChampionMasteryUrl = `${BASE_EUW}/lol/champion-mastery/v3/champion-masteries/by-summoner/${data.id}?api_key=${API_RIOT_KEY}`
-      return axios.get(getChampionMasteryUrl)
+  const gg = require('./lib/Parser')
+
+  gg.SummaryRanked('euw', 'blaxtem')
+    .then((json) => {
+      return res.send(json)
+      // console.log(json)
     })
-    .then(({ data }) => {
-      return res.send(data)
+    .catch((error) => {
+      console.error(error)
     })
-    .catch(error => {
-      return res.send(error)
-    });
+
+  // const summoner = req.query.summoner
+  // const getSummonerInfoUrl = `${BASE_EUW}/lol/summoner/v3/summoners/by-name/${summoner}?api_key=${API_RIOT_KEY}`
+  // return axios.get(getSummonerInfoUrl)
+  //   .then(({ data }) => {
+  //     const getChampionMasteryUrl = `${BASE_EUW}/lol/champion-mastery/v3/champion-masteries/by-summoner/${data.id}?api_key=${API_RIOT_KEY}`
+  //     return axios.get(getChampionMasteryUrl)
+  //   })
+  //   .then(({ data }) => {
+  //     return res.send(data)
+  //   })
+  //   .catch(error => {
+  //     return res.send(error)
+  //   });
 })
 
 
