@@ -1,9 +1,9 @@
 'use strict'
-var Endpoint = require('./Endpoint'),
-	cheerio = require('cheerio'),
-	Error = require('./Responses/Error'),
-	errorMessages = require('./Responses/error_messages.json'),
-	responseCodes = require('./Responses/response_codes.json')
+const Endpoint = require('./Endpoint')
+const cheerio = require('cheerio')
+const Error = require('./Responses/Error')
+const errorMessages = require('./Responses/error_messages.json')
+const responseCodes = require('./Responses/response_codes.json')
 
 module.exports = class SummaryCombinedEndpoint extends Endpoint {
 	Path() {

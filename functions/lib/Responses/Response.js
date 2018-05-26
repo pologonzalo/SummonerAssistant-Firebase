@@ -1,7 +1,5 @@
-'use strict'
-
-var responseCodes = require('./response_codes.json'),
-	errorMessages = require('./error_messages.json')
+const responseCodes = require('./response_codes.json')
+const errorMessages = require('./error_messages.json')
 
 module.exports = class Response {
 	static Ok(res, data) {

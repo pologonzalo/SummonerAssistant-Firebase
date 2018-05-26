@@ -1,14 +1,15 @@
-let request = require('request-promise'),
-	Promise = require('bluebird'),
-	cheerio = require('cheerio'),
-	Error = require('./Responses/Error'),
-	errorMessages = require('./Responses/error_messages.json'),
-	responseCodes = require('./Responses/response_codes.json'),
-	riot = require('./riot'),
-	// LiveEndpoint = new (require('./LiveEndpoint')),
-	// RenewEndpoint = new (require('./RenewEndpoint')),
-	SummaryCombinedEndpoint = new (require('./SummaryCombinedEndpoint')),
-	SummaryRankedEndpoint = new (require('./SummaryRankedEndpoint'))
+const request = require('request-promise')
+const cheerio = require('cheerio')
+const Error = require('./Responses/Error')
+const errorMessages = require('./Responses/error_messages.json')
+const responseCodes = require('./Responses/response_codes.json')
+const riot = require('./riot')
+
+const SummaryCombinedEndpoint = new (require('./SummaryCombinedEndpoint'))
+const SummaryRankedEndpoint = new (require('./SummaryRankedEndpoint'))
+const ChampionsRankedEndpoint = new (require('./ChampionsRankedEndpoint'))
+// LiveEndpoint = new (require('./LiveEndpoint')),
+// RenewEndpoint = new (require('./RenewEndpoint')),
 // SummaryNormalEndpoint = new (require('./SummaryNormalEndpoint')),
 // ChampionsEndpoint = new (require('./ChampionsEndpoint')),
 // LeaguesEndpoint = new (require('./LeaguesEndpoint')),
@@ -105,29 +106,43 @@ class Parser {
 
 	SummaryRanked(region, userName) {
 		return new Promise((resolve, reject) => {
+			let response
 			this.SummaryCombined(region, userName)
-				.then((response) => {
-					if ('summonerId' in response) {
-						SummaryRankedEndpoint.Request({ region, summonerId: response.summonerId })
-							.then((response1) => {
-								if (response1 instanceof Error) {
-									reject(response1)
-								} else {
-									response.games = response1
-									this.SaveId(region, userName, response.summonerId)
-									resolve(response)
-								}
-							})
-							.catch((error) => {
-								reject(error)
-							})
+				.then(_response => {
+					response = _response
+					if ('summonerId' in response)
+						return SummaryRankedEndpoint.Request({ region, summonerId: response.summonerId })
+					else
+						return reject(new Error(errorMessages.EMPTY_RESPONSE, responseCodes.ERROR))
+				})
+				.then(_response => {
+					if (_response instanceof Error) {
+						return reject(_response)
 					} else {
-						reject(new Error(errorMessages.EMPTY_RESPONSE, responseCodes.ERROR))
+						response.games = _response
+						this.SaveId(region, userName, _response.summonerId)
+						return resolve(response)
 					}
 				})
 				.catch((error) => {
 					reject(error)
 				})
+		})
+	}
+
+	SummaryRankedGames({ region, summonerId }) {
+		return new Promise((resolve, reject) => {
+			return SummaryRankedEndpoint.Request({ region, summonerId })
+				.then(response => resolve(response))
+				.catch(error => reject(error))
+		})
+	}
+
+	ChampionRanked({ season, summonerId }) {
+		return new Promise((resolve, reject) => {
+			return SummaryRankedEndpoint.Request({ region, summonerId })
+				.then(response => resolve(response))
+				.catch(error => reject(error))
 		})
 	}
 

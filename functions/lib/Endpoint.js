@@ -1,12 +1,11 @@
 'use strict'
 
-let request = require('request-promise'),
-	Promise = require('bluebird'),
-	cheerio = require('cheerio'),
-	Error = require('./Responses/Error'),
-	errorMessages = require('./Responses/error_messages.json'),
-	responseCodes = require('./Responses/response_codes.json'),
-	riot = require('./riot')
+const request = require('request-promise')
+const cheerio = require('cheerio')
+const Error = require('./Responses/Error')
+const errorMessages = require('./Responses/error_messages.json')
+const responseCodes = require('./Responses/response_codes.json')
+const riot = require('./riot')
 
 module.exports = class Endpoint {
 	constructor() {
@@ -60,38 +59,37 @@ module.exports = class Endpoint {
 						}
 					}
 
-					var error = this.ErrorCheck($)
+					let error = this.ErrorCheck($)
 					if (error instanceof Error) {
 						console.error(response)
 						reject(error)
 						return
 					}
 
-					var response = this.Parse($, json)
+					let response = this.Parse($, json)
 					if (response instanceof Error) {
 						console.error(response)
-						reject(response)
-						return
+						return reject(response)
 					} else {
 						if ((Array.isArray(response) && !response.length) || (!Array.isArray(response) && !Object.keys(response).length)) {
-							reject(new Error(errorMessages.EMPTY_RESPONSE))
+							return reject(new Error(errorMessages.EMPTY_RESPONSE))
 						} else if (typeof response === 'string') {
-							reject(new Error(errorMessages.INVALID_RESPONSE))
+							return reject(new Error(errorMessages.INVALID_RESPONSE))
 						} else {
 							response = this.Filter(response)
 
 							if (response instanceof Error) {
-								reject(response)
+								return reject(response)
 							} else {
-								resolve(response)
+								return resolve(response)
 							}
 						}
 					}
 				})
 				.catch((error) => {
-					if (error.statusCode == 418) {
+					if (error.statusCode === 418) {
 						resolve(new Error(errorMessages.NO_RESULTS, responseCodes.NO_RESULTS))
-					} else if (error.statusCode == 503) {
+					} else if (error.statusCode === 503) {
 						resolve(new Error(errorMessages.SERVICE_UNAVAILABLE, responseCodes.SERVICE_UNAVAILABLE))
 					} else {
 						console.error(error)
@@ -114,9 +112,9 @@ module.exports = class Endpoint {
 	Uri(params) {
 		//returns an encoded uri including query strings
 		if (!params) params = {}
-		var path = this.Path(),
-			regex = path.match(/\/:[a-zA-Z]*/g),
-			ignore = []
+		let path = this.Path()
+		let regex = path.match(/\/:[a-zA-Z]*/g)
+		let ignore = []
 
 		//replace any variables in this.Path() with passed or inherited parameters
 		for (var i in regex) {
@@ -129,7 +127,7 @@ module.exports = class Endpoint {
 				path = path.replace(regex[i], "/" + this.Params()[key])
 			} else {
 				throw new Error(errorMessages.MISSING_PARAM_GENERIC, responseCodes.BAD_REQUEST)
-				return
+
 			}
 		}
 
@@ -152,8 +150,8 @@ module.exports = class Endpoint {
 		//append query strings from passed parameters
 		for (var key in params) {
 			var value = params[key]
-			if (ignore.indexOf(key) == -1) {
-				if (i == 0 && !didHaveParams) uri += '?'
+			if (ignore.indexOf(key) === -1) {
+				if (i === 0 && !didHaveParams) uri += '?'
 				if (key !== 'region' && typeof value !== 'undefined') uri += key + '=' + encodeURIComponent(value) + '&'
 				i++
 			}
@@ -167,6 +165,6 @@ module.exports = class Endpoint {
 
 	Strip(str) {
 		//strips newlines from a string
-		return Boolean(str) ? str.replace(/\n|\r|\t/g, '') : undefined
+		return str ? str.replace(/\n|\r|\t/g, '') : undefined
 	}
 }

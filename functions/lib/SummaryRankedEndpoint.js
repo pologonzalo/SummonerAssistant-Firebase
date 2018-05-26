@@ -1,9 +1,9 @@
-'use strict'
-var Endpoint = require('./Endpoint'),
-	cheerio = require('cheerio'),
-	Error = require('./Responses/Error'),
-	errorMessages = require('./Responses/error_messages.json'),
-	responseCodes = require('./Responses/response_codes.json')
+
+const Endpoint = require('./Endpoint')
+const cheerio = require('cheerio')
+const Error = require('./Responses/Error')
+const errorMessages = require('./Responses/error_messages.json')
+const responseCodes = require('./Responses/response_codes.json')
 
 module.exports = class SummaryRankedEndpoint extends Endpoint {
 	Params() {
@@ -17,7 +17,7 @@ module.exports = class SummaryRankedEndpoint extends Endpoint {
 	}
 
 	Parse($, json) {
-		if (Boolean(json)) {
+		if (json) {
 			var $ = cheerio.load(json.html)
 			var games = []
 			$('.GameItemWrap').each((i, game) => {
@@ -96,10 +96,10 @@ module.exports = class SummaryRankedEndpoint extends Endpoint {
 					player.name = this.Strip($('.SummonerName a').text())
 					players.push(player)
 
-					if (j == 4) {
+					if (j === 4) {
 						game.team1 = players
 						players = []
-					} else if (j == 9) {
+					} else if (j === 9) {
 						game.team2 = players
 					}
 				})
@@ -107,7 +107,7 @@ module.exports = class SummaryRankedEndpoint extends Endpoint {
 				games.push(game)
 			})
 			return games
-		} else if (Boolean($)) {
+		} else if ($) {
 			return new Error(errorMessages.RATE_LIMITED, responseCodes.TOO_MANY_REQUESTS)
 		} else {
 			return new Error(errorMessages.INVALID_RESPONSE, responseCodes.ERROR)

@@ -1,5 +1,9 @@
 const functions = require('firebase-functions');
-const axios = require('axios')
+const _ = require('lodash')
+
+
+// FUNCTIONS 
+const champions = require('./lib/champions')
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -8,45 +12,58 @@ const axios = require('axios')
 const API_RIOT_KEY = 'RGAPI-639291ee-9f27-42bc-8ce6-249a0e3b956d'
 const BASE_EUW = 'https://euw1.api.riotgames.com'
 
-exports.getSummonerSummaryRanked = functions.https.onRequest((req, res) => {
-  // ---- Example answer for blaxtem ------
-  // const exampleAnswer= {
-  //   "id": 63749117,
-  //   "accountId": 214623284,
-  //   "name": "Blaxtem",
-  //   "profileIconId": 3190,
-  //   "revisionDate": 1527271451000,
-  //   "summonerLevel": 87
-  // }
-  // Make a request for a user with a given ID
 
-  if (!req.query.summoner) return res.status(400).send('Missing summoner name')
-  if (!req.query.region) return res.status(400).send('Missing region')
+// DEV purposes
+const SUMMONER_ID = 63749117
+
+
+exports.getSummonerSummaryRanked = functions.https.onRequest((req, res) => {
+  const { region } = req.query
+  if (!region) return res.status(400).send('Missing region')
 
   const gg = require('./lib/Parser')
 
-  gg.SummaryRanked('euw', 'blaxtem')
+  gg.SummaryRankedGames({ region, summonerId: SUMMONER_ID })
     .then((json) => {
       return res.send(json)
-      // console.log(json)
     })
     .catch((error) => {
       console.error(error)
     })
+})
 
-  // const summoner = req.query.summoner
-  // const getSummonerInfoUrl = `${BASE_EUW}/lol/summoner/v3/summoners/by-name/${summoner}?api_key=${API_RIOT_KEY}`
-  // return axios.get(getSummonerInfoUrl)
-  //   .then(({ data }) => {
-  //     const getChampionMasteryUrl = `${BASE_EUW}/lol/champion-mastery/v3/champion-masteries/by-summoner/${data.id}?api_key=${API_RIOT_KEY}`
-  //     return axios.get(getChampionMasteryUrl)
-  //   })
-  //   .then(({ data }) => {
-  //     return res.send(data)
-  //   })
-  //   .catch(error => {
-  //     return res.send(error)
-  //   });
+exports.getSummaryMostFrequentChampions = functions.https.onRequest((req, res) => {
+  const { region, summonerId, season = '11', type = 'ranked' } = req.query
+  if (!region) return res.status(400).send('Missing region')
+  if (!type || (type !== 'ranked' && type !== 'flexranked5v5' && type !== 'flexranked3v3' && type !== 'soloranked')) {
+    return res.status(400).send('Invalid param <type>, please use one of: ranked, flexranked5v5, flexranked3v3, soloranked')
+  }
+  if (!summonerId) return res.status(400).send('Missing region')
+
+  champions.getSummaryMostFrequentChampions({ region, type, summonerId, season })
+    .then(champions => {
+      return res.send(champions)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+})
+
+exports.getMostFrequentChampions = functions.https.onRequest((req, res) => {
+  const { region, summonerId, season = '11', type = 'ranked' } = req.query
+  if (!region) return res.status(400).send('Missing region')
+  if (!type || (type !== 'ranked' && type !== 'flexranked5v5' && type !== 'flexranked3v3' && type !== 'soloranked')) {
+    return res.status(400).send('Invalid param <type>, please use one of: ranked, flexranked5v5, flexranked3v3, soloranked')
+  }
+  if (!summonerId) return res.status(400).send('Missing region')
+
+  champions.getMostFrequentChampions({ region, type, summonerId, season })
+    .then(champions => {
+      return res.send(champions)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
 })
 
 
