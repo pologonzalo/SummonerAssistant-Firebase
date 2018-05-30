@@ -13,7 +13,7 @@ const apiClient = axios.create({
   }
 })
 
-const API_RIOT = 'RGAPI-6c1a1417-038a-4a9e-911d-7d2b84f8f135'
+const API_RIOT = 'RGAPI-44fffbe9-2242-404e-a415-1d41d128bd37'
 /* ====================================================== */
 /*                      Public API                        */
 /* ====================================================== */
