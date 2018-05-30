@@ -7,7 +7,6 @@
  *     https://github.com/firebase/functions-samples/issues/170
  */
 const glob = require('glob')
-const camelCase = require('camelcase')
 const _ = require('lodash')
 
 const files = glob.sync('./**/*.f.js', { cwd: __dirname, ignore: './node_modules/**' })
