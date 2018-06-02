@@ -1,1 +1,1535 @@
-<h1>Hello World </h1>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script type="text/javascript">window.NREUM || (NREUM = {}), __nr_require = function (e, t, n) { function r(n) { if (!t[n]) { var o = t[n] = { exports: {} }; e[n][0].call(o.exports, function (t) { var o = e[n][1][t]; return r(o || t) }, o, o.exports) } return t[n].exports } if ("function" == typeof __nr_require) return __nr_require; for (var o = 0; o < n.length; o++)r(n[o]); return r }({ 1: [function (e, t, n) { function r() { } function o(e, t, n) { return function () { return i(e, [f.now()].concat(u(arguments)), t ? null : this, n), t ? void 0 : this } } var i = e("handle"), a = e(2), u = e(3), c = e("ee").get("tracer"), f = e("loader"), s = NREUM; "undefined" == typeof window.newrelic && (newrelic = s); var p = ["setPageViewName", "setCustomAttribute", "setErrorHandler", "finished", "addToTrace", "inlineHit", "addRelease"], d = "api-", l = d + "ixn-"; a(p, function (e, t) { s[t] = o(d + t, !0, "api") }), s.addPageAction = o(d + "addPageAction", !0), s.setCurrentRouteName = o(d + "routeName", !0), t.exports = newrelic, s.interaction = function () { return (new r).get() }; var m = r.prototype = { createTracer: function (e, t) { var n = {}, r = this, o = "function" == typeof t; return i(l + "tracer", [f.now(), e, n], r), function () { if (c.emit((o ? "" : "no-") + "fn-start", [f.now(), r, o], n), o) try { return t.apply(this, arguments) } catch (e) { throw c.emit("fn-err", [arguments, this, e], n), e } finally { c.emit("fn-end", [f.now()], n) } } } }; a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","), function (e, t) { m[t] = o(l + t) }), newrelic.noticeError = function (e) { "string" == typeof e && (e = new Error(e)), i("err", [e, f.now()]) } }, {}], 2: [function (e, t, n) { function r(e, t) { var n = [], r = "", i = 0; for (r in e) o.call(e, r) && (n[i] = t(r, e[r]), i += 1); return n } var o = Object.prototype.hasOwnProperty; t.exports = r }, {}], 3: [function (e, t, n) { function r(e, t, n) { t || (t = 0), "undefined" == typeof n && (n = e ? e.length : 0); for (var r = -1, o = n - t || 0, i = Array(o < 0 ? 0 : o); ++r < o;)i[r] = e[t + r]; return i } t.exports = r }, {}], 4: [function (e, t, n) { t.exports = { exists: "undefined" != typeof window.performance && window.performance.timing && "undefined" != typeof window.performance.timing.navigationStart } }, {}], ee: [function (e, t, n) { function r() { } function o(e) { function t(e) { return e && e instanceof r ? e : e ? c(e, u, i) : i() } function n(n, r, o, i) { if (!d.aborted || i) { e && e(n, r, o); for (var a = t(o), u = m(n), c = u.length, f = 0; f < c; f++)u[f].apply(a, r); var p = s[y[n]]; return p && p.push([b, n, r, a]), a } } function l(e, t) { v[e] = m(e).concat(t) } function m(e) { return v[e] || [] } function w(e) { return p[e] = p[e] || o(n) } function g(e, t) { f(e, function (e, n) { t = t || "feature", y[n] = t, t in s || (s[t] = []) }) } var v = {}, y = {}, b = { on: l, emit: n, get: w, listeners: m, context: t, buffer: g, abort: a, aborted: !1 }; return b } function i() { return new r } function a() { (s.api || s.feature) && (d.aborted = !0, s = d.backlog = {}) } var u = "nr@context", c = e("gos"), f = e(2), s = {}, p = {}, d = t.exports = o(); d.backlog = s }, {}], gos: [function (e, t, n) { function r(e, t, n) { if (o.call(e, t)) return e[t]; var r = n(); if (Object.defineProperty && Object.keys) try { return Object.defineProperty(e, t, { value: r, writable: !0, enumerable: !1 }), r } catch (i) { } return e[t] = r, r } var o = Object.prototype.hasOwnProperty; t.exports = r }, {}], handle: [function (e, t, n) { function r(e, t, n, r) { o.buffer([e], r), o.emit(e, t, n) } var o = e("ee").get("handle"); t.exports = r, r.ee = o }, {}], id: [function (e, t, n) { function r(e) { var t = typeof e; return !e || "object" !== t && "function" !== t ? -1 : e === window ? 0 : a(e, i, function () { return o++ }) } var o = 1, i = "nr@id", a = e("gos"); t.exports = r }, {}], loader: [function (e, t, n) { function r() { if (!x++) { var e = h.info = NREUM.info, t = d.getElementsByTagName("script")[0]; if (setTimeout(s.abort, 3e4), !(e && e.licenseKey && e.applicationID && t)) return s.abort(); f(y, function (t, n) { e[t] || (e[t] = n) }), c("mark", ["onload", a() + h.offset], null, "api"); var n = d.createElement("script"); n.src = "https://" + e.agent, t.parentNode.insertBefore(n, t) } } function o() { "complete" === d.readyState && i() } function i() { c("mark", ["domContent", a() + h.offset], null, "api") } function a() { return E.exists && performance.now ? Math.round(performance.now()) : (u = Math.max((new Date).getTime(), u)) - h.offset } var u = (new Date).getTime(), c = e("handle"), f = e(2), s = e("ee"), p = window, d = p.document, l = "addEventListener", m = "attachEvent", w = p.XMLHttpRequest, g = w && w.prototype; NREUM.o = { ST: setTimeout, SI: p.setImmediate, CT: clearTimeout, XHR: w, REQ: p.Request, EV: p.Event, PR: p.Promise, MO: p.MutationObserver }; var v = "" + location, y = { beacon: "bam.nr-data.net", errorBeacon: "bam.nr-data.net", agent: "js-agent.newrelic.com/nr-1071.min.js" }, b = w && g && g[l] && !/CriOS/.test(navigator.userAgent), h = t.exports = { offset: u, now: a, origin: v, features: {}, xhrWrappable: b }; e(1), d[l] ? (d[l]("DOMContentLoaded", i, !1), p[l]("load", r, !1)) : (d[m]("onreadystatechange", o), p[m]("onload", r)), c("mark", ["firstbyte", u], null, "api"); var x = 0, E = e(4) }, {}] }, {}, ["loader"]);</script>
+  <script type="text/javascript">window.NREUM || (NREUM = {}); NREUM.info = { "beacon": "bam.nr-data.net", "queueTime": 0, "licenseKey": "fdf153714a", "agent": "", "transactionName": "blMDZkdWXEBXUkxZDlcZJ0dbVEZaWV8XQghWQj5WUEFtQ1lDTFENF1IEUVpFU0dZQ0sKF1xECFRcUlY=", "applicationID": "39108861", "errorBeacon": "bam.nr-data.net", "applicationTime": 500 }</script>
+
+  <title>Riot Developer Portal</title>
+  <link rel="icon" href="/static/img/riot-static-fist.d25729087ab0.png" type="image/ico" />
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" type="text/css" href="https://s.lolstatic.com/awesomefonts/1.0.0/lol-fonts.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/static/js/remark/css/bootstrap.min-v2.2.0.913c1c09697c.css">
+  <link rel="stylesheet" href="/static/js/remark/css/bootstrap-extend.min-v2.2.0.cd5a40603475.css">
+  <link rel="stylesheet" href="/static/css/site.min-v2.2.0.ffd2136ac2cd.css">
+  <link rel="stylesheet" href="/static/js/chosen_v1.6.2/chosen.min.6c4150ddef41.css">
+
+  <!-- Plugins -->
+  <!--   	<link rel="stylesheet" href="/static/js/remark/vendor/animsition/animsition.min-v2.2.0.5273774fb4fb.css">
+    <link rel="stylesheet" href="/static/js/remark/vendor/asscrollable/asScrollable.min-v2.2.0.a52f6c3cc79b.css"> -->
+
+  <!-- Plugins For This Page -->
+  <!-- <link rel="stylesheet" href="/static/js/remark/vendor/bootstrap-tokenfield/bootstrap-tokenfield.min-v2.2.0.b9d1aa22fb12.css"> -->
+
+  <!-- Page -->
+  <!-- <link rel="stylesheet" href="/static/examples/css/dashboard/v1.min-v2.2.0.7d09c3d161b9.css"> -->
+
+  <!-- Fonts -->
+  <!-- <link rel="stylesheet" href="/static/js/remark/fonts/web-icons/web-icons.min-v2.2.0.a4472bd59ffe.css"> -->
+
+
+  <link href="/static/css/main.css" rel="stylesheet" type="text/css" />
+
+  <!-- Scripts -->
+  <script src="/static/js/clipboard.1fc7e10d5a16.js"></script>
+  <script src="/static/js/remark/vendor/jquery/jquery.min.2b6294333db8.js"></script>
+  <script src="/static/js/chosen_v1.6.2/chosen.jquery.min.1274bf52237d.js"></script>
+  <script src="/static/js/remark/vendor/modernizr/modernizr.min.26ce1cd0cc81.js"></script>
+  <script src="/static/js/google_chart.b25e9e285585.js"></script>
+  <script src="/static/js/RiotGraphs.a65ff01cc344.js"></script>
+  <script src="/static/js/lib/vue.min.59386f1ca39b.js"></script>
+  <script src="/static/js/lib/vue.resource.min.b7a486d49ff6.js"></script>
+  <script src="/static/js/vue_components/component.graph.a420be3a5275.js"></script>
+
+  <script type="text/javascript" src="https://lolstatic-a.akamaihd.net/riotbar/prod/latest/en_GB-defer-cookie-policy-v2.js"></script>
+  <script>
+  	// Breakpoints();
+  </script>
+  <!-- Global Site Tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43132214-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments) };
+    gtag('js', new Date());
+
+    gtag('config', 'UA-43132214-2');
+  </script>
+
+</head>
+
+<body class="riot-player">
+
+
+
+
+  <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
+    <div class="wrapper">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle hamburger hamburger-close navbar-toggle-left hided" data-toggle="menubar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="hamburger-bar"></span>
+        </button>
+        <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-collapse" data-toggle="collapse">
+          <i class="icon wb-more-horizontal" style="color:black;" aria-hidden="true"></i>
+        </button>
+        <a href="/">
+          <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
+            <span class="riot-logo"></span>
+            <span class="navbar-brand-text hidden-xs"> Developer</span>
+          </div>
+        </a>
+      </div>
+      <div class="navbar-container container-fluid">
+        <!-- Navbar Collapse -->
+        <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
+          <!-- Navbar Toolbar -->
+          <ul class="nav navbar-nav navbar-center">
+
+            <li class="dropdown navbar-center-inline-block hover-dropdown">
+              <a href="/api-methods/" aria-expanded="false" data-animation="scale-up" role="button">Api Documentation</a>
+              <ul class="dropdown-menu position-absolute" role="menu">
+
+
+
+
+                <li role="presentation">
+                  <a href="/api-methods" role="menuitem">Full API Reference</a>
+                </li>
+
+
+
+
+
+
+
+                <li role="presentation">
+                  <a href="/getting-started.html" role="menuitem">Getting Started</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li role="presentation">
+                  <a href="/application-process.html" role="menuitem">Application Process</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li role="presentation">
+                  <a href="/api-keys.html" role="menuitem">API Keys</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li role="presentation">
+                  <a href="/rate-limiting.html" role="menuitem">Rate Limiting</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li role="presentation">
+                  <a href="/response-codes.html" role="menuitem">Response Codes</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li role="presentation">
+                  <a href="/regional-endpoints.html" role="menuitem">Regional Endpoints</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li role="presentation">
+                  <a href="/api-versioning.html" role="menuitem">Versioning &amp; Deprecation</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li role="presentation">
+                  <a href="/game-constants.html" role="menuitem">Game Constants</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li role="presentation">
+                  <a href="/static-data.html" role="menuitem">Static Data</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li role="presentation">
+                  <a href="/ranked-info.html" role="menuitem">Ranked Info</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li role="presentation">
+                  <a href="/tournament-api.html" role="menuitem">Tournament API</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li role="presentation">
+                  <a href="/spectating-games.html" role="menuitem">Spectating Games</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li role="presentation">
+                  <a href="/item-sets.html" role="menuitem">Item Sets</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </ul>
+
+              <li class="dropdown navbar-center-inline-block hover-dropdown">
+                <a href="/policies.html" aria-expanded="false" data-animation="scale-up" role="button">Policies</a>
+                <ul class="dropdown-menu position-absolute" role="menu">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  <li role="presentation">
+                    <a href="https://developer.riotgames.com/policies.html" role="menuitem">General Policies</a>
+                  </li>
+
+
+
+
+
+                  <li role="presentation">
+                    <a href="https://developer.riotgames.com/policies/data-policies.html" role="menuitem">Data Policies</a>
+                  </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+
+                <li class="dropdown navbar-center-inline-block hover-dropdown">
+                  <a href="/api-status" aria-expanded="false" data-animation="scale-up" role="button">API Status</a>
+                  <ul class="dropdown-menu position-absolute" role="menu">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  </ul>
+
+                  <li class="dropdown navbar-center-inline-block hover-dropdown">
+                    <a href="https://discussion.developer.riotgames.com" aria-expanded="false" data-animation="scale-up" role="button">Communities</a>
+                    <ul class="dropdown-menu position-absolute" role="menu">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      <li role="presentation">
+                        <a href="/policies.html#codeofconduct" role="menuitem">Code of Conduct</a>
+                      </li>
+
+
+
+
+
+                      <li role="presentation">
+                        <a href="https://discussion.developer.riotgames.com" target="_blank" role="menuitem">Discussions</a>
+                      </li>
+
+
+
+
+
+                      <li role="presentation">
+                        <a href="https://discord.gg/uYW7qhP" target="_blank" role="menuitem">Discord</a>
+                      </li>
+
+
+
+
+
+                      <li role="presentation">
+                        <a href="https://twitter.com/RiotGamesAPI" target="_blank" role="menuitem">Twitter</a>
+                      </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      <li role="presentation">
+                        <a href="/api-challenge-december2017.html" role="menuitem">API Challenge: December 2017</a>
+                      </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      <li role="presentation">
+                        <a href="/api-challenge-april2016.html" role="menuitem">API Challenge: April 2016</a>
+                      </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      <li role="presentation">
+                        <a href="/api-challenge-aug2015.html" role="menuitem">API Challenge: August 2015</a>
+                      </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      <li role="presentation">
+                        <a href="/api-challenge-april2015.html" role="menuitem">API Challenge: April 2015</a>
+                      </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </ul>
+
+
+          </ul>
+          <!-- Navbar Toolbar Right -->
+
+          <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+            <li class="dropdown">
+              <a class="navbar-avatar dropdown-toggle" data-toggle="dropdown" href="/signin" aria-expanded="false" data-animation="scale-up"
+                role="button">
+                <span class="avatar avatar-online">
+                  <img src="https://avatar.leagueoflegends.com/EUW1/Blaxtem.png" alt="Blaxtem_avatar">
+
+                </span>
+                <h3 class="admin-title">Blaxtem</h3>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li role="presentation">
+                  <a href="/profile/145951" role="menuitem">My Profile</a>
+                </li>
+                <li role="presentation">
+                  <a href="/my-account" role="menuitem">My Account</a>
+                </li>
+                <li role="presentation">
+                  <a href="/apps" role="menuitem">My Apps</a>
+                </li>
+                <li role="presentation">
+                  <a href="/groups/" role="menuitem">My Groups</a>
+                </li>
+                <li role="presentation">
+                  <a href="/messages/" role="menuitem">Messages
+
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="/support/tickets" role="menuitem">Support</a>
+                </li>
+                <li role="presentation">
+                  <a href="/logout" role="menuitem">Sign Out</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </div>
+        <!-- Site Navbar Seach -->
+        <div class="collapse navbar-search-overlap" id="site-navbar-search">
+          <form role="search">
+            <div class="form-group">
+              <div class="input-search">
+                <i class="input-search-icon wb-search" aria-hidden="true"></i>
+                <input type="text" class="form-control" name="site-search" placeholder="Search...">
+                <button type="button" class="input-search-close icon wb-close" data-target="#site-navbar-search" data-toggle="collapse" aria-label="Close"></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <!-- Page -->
+
+  <div class="page ">
+    <div class="page-content padding-30-main container-fluid">
+
+
+
+
+
+
+      <link href="/static/css/swagger.1189126a0d46.css" rel='stylesheet' type='text/css' />
+      <link href="/static/css/highlight.default.4ae5c489c2bc.css" rel='stylesheet' type='text/css' />
+
+      <script src="/static/js/api_reference_page.f3da2a986d8e.js" type='text/javascript'></script>
+
+      <div class="site-menubar api-ref-sidebar">
+        <div class="nav-side site-menubar-body">
+          <div class="scrollable-container">
+            <ul class="app-nav-bar" id="side-bar">
+
+              <li class="list-group-item list-group-item-api list-group-item--bold list-group-messages">
+                <a href='#champion-mastery-v3' class="api_option" api-name="champion-mastery-v3">champion-mastery-v3
+                  <span class="api_desc">Development API Key</span>
+                </a>
+              </li>
+
+              <li class="list-group-item list-group-item-api list-group-item--bold list-group-messages">
+                <a href='#champion-v3' class="api_option" api-name="champion-v3">champion-v3
+                  <span class="api_desc">Development API Key</span>
+                </a>
+              </li>
+
+              <li class="list-group-item list-group-item-api list-group-item--bold list-group-messages">
+                <a href='#league-v3' class="api_option" api-name="league-v3">league-v3
+                  <span class="api_desc">Development API Key</span>
+                </a>
+              </li>
+
+              <li class="list-group-item list-group-item-api list-group-item--bold list-group-messages">
+                <a href='#lol-static-data-v3' class="api_option" api-name="lol-static-data-v3">lol-static-data-v3
+                  <span class="api_desc">Development API Key</span>
+                </a>
+              </li>
+
+              <li class="list-group-item list-group-item-api list-group-item--bold list-group-messages">
+                <a href='#lol-status-v3' class="api_option" api-name="lol-status-v3">lol-status-v3
+                  <span class="api_desc">Development API Key</span>
+                </a>
+              </li>
+
+              <li class="list-group-item list-group-item-api list-group-item--bold list-group-messages">
+                <a href='#match-v3' class="api_option" api-name="match-v3">match-v3
+                  <span class="api_desc">Development API Key</span>
+                </a>
+              </li>
+
+              <li class="list-group-item list-group-item-api list-group-item--bold list-group-messages">
+                <a href='#spectator-v3' class="api_option" api-name="spectator-v3">spectator-v3
+                  <span class="api_desc">Development API Key</span>
+                </a>
+              </li>
+
+              <li class="list-group-item list-group-item-api list-group-item--bold list-group-messages">
+                <a href='#summoner-v3' class="api_option" api-name="summoner-v3">summoner-v3
+                  <span class="api_desc">Development API Key</span>
+                </a>
+              </li>
+
+              <li class="list-group-item list-group-item-api list-group-item--bold list-group-messages">
+                <a href='#third-party-code-v3' class="api_option" api-name="third-party-code-v3">third-party-code-v3
+                  <span class="api_desc">Development API Key</span>
+                </a>
+              </li>
+
+              <li class="list-group-item list-group-item-api list-group-item--bold list-group-messages">
+                <a href='#tournament-stub-v3' class="api_option" api-name="tournament-stub-v3">tournament-stub-v3
+                  <span class="api_desc">Tournaments API Stub</span>
+                </a>
+              </li>
+
+              <li class="list-group-item list-group-item-api list-group-item--bold list-group-messages">
+                <a href='#tournament-v3' class="api_option" api-name="tournament-v3">tournament-v3
+                  <span class="api_desc">Tournaments API</span>
+                </a>
+              </li>
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="main-view api-ref-mainview">
+        <div class="padding-left-300">
+
+          <div class="api_detail inner_content" api-name="champion-mastery-v3" style="display: none;">
+            <div class="loading"></div>
+          </div>
+
+          <div class="api_detail inner_content" api-name="champion-v3" style="display: none;">
+            <div class="loading"></div>
+          </div>
+
+          <div class="api_detail inner_content" api-name="league-v3" style="display: none;">
+            <div class="loading"></div>
+          </div>
+
+          <div class="api_detail inner_content" api-name="lol-static-data-v3" style="display: none;">
+            <div class="loading"></div>
+          </div>
+
+          <div class="api_detail inner_content" api-name="lol-status-v3" style="display: none;">
+            <div class="loading"></div>
+          </div>
+
+          <div class="api_detail inner_content" api-name="match-v3" style="display: none;">
+            <div class="loading"></div>
+          </div>
+
+          <div class="api_detail inner_content" api-name="spectator-v3" style="display: none;">
+            <div class="loading"></div>
+          </div>
+
+          <div class="api_detail inner_content" api-name="summoner-v3" style="display: none;">
+            <div class="loading"></div>
+          </div>
+
+          <div class="api_detail inner_content" api-name="third-party-code-v3" style="display: none;">
+            <div class="loading"></div>
+          </div>
+
+          <div class="api_detail inner_content" api-name="tournament-stub-v3" style="display: none;">
+            <div class="loading"></div>
+          </div>
+
+          <div class="api_detail inner_content" api-name="tournament-v3" style="display: none;">
+            <div class="loading"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <footer class="site-footer">
+    <p class="footer-note">© 2018 Riot Games, Inc. All rights reserved. League of Legends and Riot Games are trademarks, service marks, and registered
+      trademarks of Riot Games, Inc.</p>
+    <ul class="footer-nav">
+      <li>
+        <a href="/support/tickets">Support</a>
+      </li>
+      <li>
+        <a href="/terms-and-conditions.html">API Terms</a>
+      </li>
+      <li>
+        <a href="/api-status/">API Status</a>
+      </li>
+      <li>
+        <a href="/getting-started.html">Getting Started</a>
+      </li>
+      <li>
+        <a href="https://na.leagueoflegends.com/en/legal/privacy">Privacy Policy</a>
+      </li>
+    </ul>
+  </footer>
+
+
+  <!-- End Page -->
+
+  <!-- Core  -->
+  <script src="/static/js/remark/vendor/bootstrap/bootstrap.min.4add7d980ad2.js"></script>
+  <script src="/static/js/clipboard.1fc7e10d5a16.js"></script>
+  <script src="/static/js/main.ed218e9e7b95.js"></script>
+  <script src="/static/js/csrf.d1ba225f8a2c.js"></script>
+  <script src="/static/js/scripts.f1f341728133.js"></script>
+
+</body>
