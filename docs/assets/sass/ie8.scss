@@ -4,71 +4,112 @@
 @import 'libs/skel';
 
 /*
-	Prologue by HTML5 UP
+	Spectral by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-/* Section/Article */
+/* Icon */
 
-	section, article {
-		> .last-child,
-		&.last-child {
-			margin-bottom: 0;
+	.icon {
+		&.major {
+			border: none;
+
+			&:before {
+				font-size: 3em;
+			}
 		}
 	}
 
 /* Form */
 
-	form {
-		input[type="text"],
-		input[type="email"],
-		input[type="password"],
-		select,
-		textarea {
-			-ms-behavior: url('assets/js/ie/PIE.htc');
-		}
+	label {
+		color: _palette(accent7, fg-bold);
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select,
+	textarea {
+		border: solid 1px _palette(accent7, border);
 	}
 
 /* Button */
 
-	input[type="button"],
 	input[type="submit"],
 	input[type="reset"],
+	input[type="button"],
 	button,
 	.button {
-		-ms-behavior: url('assets/js/ie/PIE.htc');
+		border: solid 2px _palette(accent7, border);
+
+		&.special {
+			border: 0 !important;
+		}
+	}
+
+/* Page Wrapper + Menu */
+
+	#menu {
+		display: none;
+	}
+
+	body.is-menu-visible {
+		#menu {
+			display: block;
+		}
 	}
 
 /* Header */
 
-	#nav {
-		ul {
-			li {
-				a {
-					color: #888;
-
-					&.active {
-						background: #1C2022;
+	#header {
+		nav {
+			> ul {
+				> li {
+					> a {
+						&.menuToggle {
+							&:after {
+								display: none;
+							}
+						}
 					}
 				}
 			}
 		}
 	}
 
-	#headerToggle {
-		.toggle {
-			background-color: #888;
+/* Banner + Wrapper (style4) */
+
+	#banner,
+	.wrapper.style4 {
+		-ms-behavior: url('assets/js/ie/backgroundsize.min.htc');
+
+		&:before {
+			display: none;
+		}
+	}
+
+/* Banner */
+
+	#banner {
+		.more {
+			height: 4em;
+
+			&:after {
+				display: none;
+			}
 		}
 	}
 
 /* Main */
 
 	#main {
-		> section {
-			&.cover {
-				background-position: auto;
-				-ms-behavior: url('assets/js/ie/backgroundsize.min.htc');
+		> header {
+			-ms-behavior: url('assets/js/ie/backgroundsize.min.htc');
+
+			&:before {
+				display: none;
 			}
 		}
 	}
