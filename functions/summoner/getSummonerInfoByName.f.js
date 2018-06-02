@@ -12,6 +12,9 @@ exports = module.exports = functions.https.onCall(({ region, summonerName }) => 
     .then(({ data }) => {
       data.profileIconThumbnail = `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${data.profileIconId}.jpg`
       return data
+    }).catch(({ message }) => {
+      throw new functions.https.HttpsError('internal', message);
     })
 })
+
 

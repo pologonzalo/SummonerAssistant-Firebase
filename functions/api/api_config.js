@@ -13,7 +13,8 @@ const apiClient = axios.create({
   }
 })
 
-const API_RIOT = 'RGAPI-44fffbe9-2242-404e-a415-1d41d128bd37'
+const SUMMONER_ID = 63749117
+const API_RIOT = 'RGAPI-2f3d8544-a450-4367-a74c-0cae4db20d64'
 /* ====================================================== */
 /*                      Public API                        */
 /* ====================================================== */
